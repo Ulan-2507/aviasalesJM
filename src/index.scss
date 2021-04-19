@@ -1,12 +1,14 @@
 @font-face {
 	font-family: 'Open Sans';
-	src: url('./fonts/Regular.woff2') format('woff2');
+	src: url('./components/fonts/Regular.woff') format('woff'),
+	url('./components/fonts/Regular.woff2') format('woff2');
 	font-weight: 400;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Open Sans';
-	src: url('./fonts/SemiBold.woff2') format('woff2');
+	src: url('./components/fonts/SemiBold.woff') format('woff'),
+	url('./components/fonts/SemiBold.woff2') format('woff2');
 	font-weight: 600;
 	font-style: normal;
 }
@@ -60,5 +62,6 @@ body {
 
   background: #E5E5E5;
 }
+
 
 

@@ -1,0 +1,81 @@
+$color-focus: #21f3ad;
+$color-disabled: #9b9b9b;
+$color-main: #2196F3;
+.filter {
+    min-height: 252px;
+    padding: 20px 0 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    @media (max-width: 610px) { 
+        position: absolute;
+        visibility: hidden;
+        width: 100%;
+        top: -215px;
+    }
+    &__title {
+        padding: 0 20px 10px;
+        line-height: 12px;
+    }
+
+    &__list {
+        font-size: 13px;
+        font-weight: 400;
+    }
+    &__item {
+        padding: 10px 0;
+    }
+    &__item--selected {
+        background-color: #F1FCFF;
+    }
+
+    .check {
+        position: relative;
+        padding-left: 50px;
+        transition: 0.3s;
+        &__input{
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+        }
+        
+        &__box {
+          position: absolute;
+          margin-left: -30px;
+          width: 20px;
+          height: 20px;
+          border-radius: 2px;
+          box-shadow: 0 0 0 1px $color-main;
+          background-position: center;
+          background-repeat: no-repeat; 
+          transition: 0.3s;
+        }
+
+        &__input:checked + .check__box {
+            background-image: url(../../img/check.svg);
+            
+        }
+        &__input:focus + .check__box, 
+        &__input:hover + .check__box {
+            box-shadow: 
+                0 0 0 1px $color-main, 
+                0 0 0 2px $color-focus; 
+        }
+        &__input:disabled + .check__box {
+            box-shadow: 0 0 0 1px $color-disabled; 
+        }
+        &__input:checked:disabled + .check__box {
+            background-image: url(../../img/check-disabled.svg);
+        }
+    }
+}
+.filter-open {
+    visibility: visible;
+    transform: translateY(266px);
+}

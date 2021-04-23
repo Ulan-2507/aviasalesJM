@@ -58,7 +58,7 @@ $color-main: #2196F3;
         }
 
         &__input:checked + .check__box {
-            background-image: url(../../img/check.svg);
+            background-image: url(../../../img/check.svg);
             
         }
         &__input:focus + .check__box, 
@@ -71,7 +71,7 @@ $color-main: #2196F3;
             box-shadow: 0 0 0 1px $color-disabled; 
         }
         &__input:checked:disabled + .check__box {
-            background-image: url(../../img/check-disabled.svg);
+            background-image: url(../../../img/check-disabled.svg);
         }
     }
 }

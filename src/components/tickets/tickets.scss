@@ -45,11 +45,7 @@ $color-white: #FFFFFF;
         border-color: $color-main;
         color: $color-white;
     }
-    &__list.loader {
-        display: flex;
-        justify-content: center;
-        color: $color-main;
-    }
+    
     &__list h1 {
         padding: 0 10px;
         font-size: 20px;

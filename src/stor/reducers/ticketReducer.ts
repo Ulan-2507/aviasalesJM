@@ -44,7 +44,6 @@ export const ticketReducer = (
         ...state,
         listLength: LENGTH_STEP,
         loading: true,
-        tickets: [],
       };
     case TicketActionTypes.FETCH_TICKETS_SUCCESS:
       return {

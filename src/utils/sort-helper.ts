@@ -62,7 +62,15 @@ const sortList = (
   category: string,
   listLength: number
 ) => {
-  if (Object.values(filter).filter((i: boolean) => i === true).length > 0) {
+  if (
+    [
+      filter.all,
+      filter.oneTransfer,
+      filter.threeTransfer,
+      filter.twoTransfer,
+      filter.withoutTransfers,
+    ].filter((i: boolean) => i === true).length > 0
+  ) {
     const filterList = filterTickets(filter, tickets);
     return sortCategory(filterList, category).slice(0, listLength);
   }

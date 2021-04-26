@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { useTypedSelector } from "../../../hooks/useTypedSelelctor";
 import { useActions } from "../../../hooks/useActions";
 import FilterItem from "../filter-item";
@@ -6,6 +7,7 @@ import "./filter.scss";
 
 const Filter = () => {
   const {
+    isOpen,
     all,
     withoutTransfers,
     oneTransfer,
@@ -21,7 +23,7 @@ const Filter = () => {
   } = useActions();
 
   return (
-    <div className="filter">
+    <div className={cn("filter", { "filter-open": isOpen })}>
       <h3 className="filter__title">Количество пересадок</h3>
       <ul className="filter__list">
         <FilterItem value="Все" show={all} handler={AllAction} />

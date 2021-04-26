@@ -12,7 +12,8 @@ $color-main: #2196F3;
         position: absolute;
         visibility: hidden;
         width: 100%;
-        top: -215px;
+        top: -250px;
+        z-index: 0;
     }
     &__title {
         padding: 0 20px 10px;
@@ -76,5 +77,8 @@ $color-main: #2196F3;
 }
 .filter-open {
     visibility: visible;
-    transform: translateY(266px);
+    transform: translateY(300px);
+    @media (min-width: 611px) { 
+        transform: translateY(0px);
+    }
 }

@@ -1,4 +1,5 @@
 export interface FilterState {
+  isOpen: boolean;
   all: boolean;
   withoutTransfers: boolean;
   oneTransfer: boolean;
@@ -7,6 +8,7 @@ export interface FilterState {
 }
 
 export enum FilterActionTypes {
+  IS_OPEN = "IS_OPEN",
   ALL = "ALL",
   WITHOUT_TRANSFER = "WITHOUT_TRANSFER",
   ONE_TRANSFER = "ONE_TRANSFER",
@@ -14,6 +16,9 @@ export enum FilterActionTypes {
   THREE_TRANSFER = "THREE_TRANSFER",
 }
 
+interface IsOpenAction {
+  type: FilterActionTypes.IS_OPEN;
+}
 interface AllAction {
   type: FilterActionTypes.ALL;
 }
@@ -35,4 +40,5 @@ export type FilterActions =
   | WithoutTransferAction
   | OneTransferAction
   | TwoTransferAction
-  | ThreeTransferAction;
+  | ThreeTransferAction
+  | IsOpenAction;

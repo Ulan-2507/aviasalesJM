@@ -1,5 +1,5 @@
 import React from "react";
-import "./flights.scss";
+
 import { v4 as uuidv4 } from "uuid";
 import {
   time,
@@ -24,7 +24,7 @@ const Flights: React.FC<IProps> = ({ segments }) => {
     const { origin, destination, date, stops, duration } = segment;
 
     return (
-      <div key={uuidv4()} className="flight">
+      <div key={uuidv4()} className="ticket__row">
         <FlightData
           label={`${origin} - ${destination}`}
           value={time(date, duration)}
@@ -34,7 +34,7 @@ const Flights: React.FC<IProps> = ({ segments }) => {
       </div>
     );
   });
-  return <React.Fragment>{flightData}</React.Fragment>;
+  return <div className="ticket__flight-list">{flightData}</div>;
 };
 
 export default Flights;

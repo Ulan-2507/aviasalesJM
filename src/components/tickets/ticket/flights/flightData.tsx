@@ -5,9 +5,9 @@ type IProps = {
 };
 export default function FlightData({ label, value }: IProps) {
   return (
-    <div className="flight__data">
-      <div className="flight__label">{label}</div>
-      <div className="flight__subtitle">{value || <>&nbsp;</>}</div>
+    <div>
+      <div className="ticket__label">{label}</div>
+      <div className="ticket__value">{value || <>&nbsp;</>}</div>
     </div>
   );
 }

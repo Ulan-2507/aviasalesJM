@@ -45,13 +45,17 @@ $color-white: #FFFFFF;
         border-color: $color-main;
         color: $color-white;
     }
-    &__list .loader {
+    &__list.loader {
         display: flex;
         justify-content: center;
         color: $color-main;
     }
     &__list h1 {
+        padding: 0 10px;
         font-size: 20px;
+        @media (max-width: 610px) {
+            font-size: 16px;
+        }
     }
     &__show-btn {
         margin: 10px 0;

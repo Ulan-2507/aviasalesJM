@@ -5,6 +5,7 @@ import {
 } from "../../types/filter";
 
 const initialState: FilterState = {
+  isOpen: false,
   all: true,
   withoutTransfers: true,
   oneTransfer: true,
@@ -16,13 +17,23 @@ export const filterReducer = (
   state = initialState,
   action: FilterActions
 ): FilterState => {
-  const stateLength: number = Object.values(state).filter(
-    (i: boolean) => i === true
-  ).length;
+  const stateLength: number = [
+    state.all,
+    state.oneTransfer,
+    state.threeTransfer,
+    state.twoTransfer,
+    state.withoutTransfers,
+  ].filter((i: boolean) => i === true).length;
 
   switch (action.type) {
+    case FilterActionTypes.IS_OPEN:
+      return {
+        ...state,
+        isOpen: !state.isOpen,
+      };
     case FilterActionTypes.ALL:
       return {
+        ...state,
         all: !state.all,
         withoutTransfers: !state.all ? true : false,
         oneTransfer: !state.all ? true : false,

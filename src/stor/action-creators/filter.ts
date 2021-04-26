@@ -24,3 +24,6 @@ export const ThreeTransferAction = (): FilterActions => {
   store.dispatch(resetListLength());
   return { type: FilterActionTypes.THREE_TRANSFER };
 };
+export const OpenAction = (): FilterActions => {
+  return { type: FilterActionTypes.IS_OPEN };
+};

@@ -12,9 +12,8 @@ import Ticket from "./ticket";
 import Message from "../message";
 import Spinner from "../spinner";
 
-
 import axios from "axios";
-import store from '../../stor';
+import store from "../../stor";
 
 const Tickets: React.FC = () => {
   const filter = useTypedSelector((state) => ({ ...state.filter }));
@@ -23,7 +22,7 @@ const Tickets: React.FC = () => {
   );
   const { cheapest, fastest, showMore } = useActions();
 
-  useEffect(() => { 
+  useEffect(() => {
     const getData = async () => {
       try {
         const responseID = await axios.get(
@@ -45,7 +44,7 @@ const Tickets: React.FC = () => {
             "Произошла ошибка при загрузке билетов попробуйте перезагрузить страницу",
         });
       }
-    }; 
+    };
     getData();
   }, []);
 

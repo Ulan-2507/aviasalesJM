@@ -2,7 +2,6 @@ import { TicketAction, TicketActionTypes } from "../../types/ticket";
 // import { Dispatch } from "redux";
 // import axios from "axios";
 
-
 // export const fetchTickets = () => {
 
 //     return async (dispatch: Dispatch<TicketAction>) => {

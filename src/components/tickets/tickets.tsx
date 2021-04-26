@@ -12,15 +12,40 @@ import Ticket from "./ticket";
 import Message from "../message";
 import Spinner from "../spinner";
 
+import axios from "axios";
+import store from "../../stor";
+
 const Tickets: React.FC = () => {
   const filter = useTypedSelector((state) => ({ ...state.filter }));
   const { category, listLength, tickets, loading, error } = useTypedSelector(
     (state) => state.tickets
   );
-  const { cheapest, fastest, showMore, fetchTickets } = useActions();
+  const { cheapest, fastest, showMore } = useActions();
 
   useEffect(() => {
-    fetchTickets();
+    const getData = async () => {
+      try {
+        const responseID = await axios.get(
+          `https://front-test.beta.aviasales.ru/search`
+        );
+        const id = responseID.data.searchId;
+        store.dispatch({ type: TicketActionTypes.FETCH_TICKETS });
+        const response = await axios.get(
+          `https://front-test.beta.aviasales.ru/tickets?searchId=${id}`
+        );
+        store.dispatch({
+          type: TicketActionTypes.FETCH_TICKETS_SUCCESS,
+          payload: response.data,
+        });
+      } catch (e) {
+        store.dispatch({
+          type: TicketActionTypes.FETCH_TICKETS_ERROR,
+          payload:
+            "Произошла ошибка при загрузке билетов попробуйте перезагрузить страницу",
+        });
+      }
+    };
+    getData();
   }, []);
 
   const list = sortList(tickets, filter, category, listLength);

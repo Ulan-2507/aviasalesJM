@@ -5,15 +5,15 @@ import cn from "classnames";
 
 import { useTypedSelector } from "../../hooks/useTypedSelelctor";
 import { useActions } from "../../hooks/useActions";
-import { TicketActionTypes } from "../../types/ticket";
+import {  TicketActionTypes, TicketData } from "../../types/ticket";
 import sortList from "../../utils/sort-helper";
 
 import Ticket from "./ticket";
 import Message from "../message";
 import Spinner from "../spinner";
 
-import axios from "axios";
 import store from "../../stor";
+import { getData } from "../../stor/action-creators/tickets";
 
 const Tickets: React.FC = () => {
   const filter = useTypedSelector((state) => ({ ...state.filter }));
@@ -23,32 +23,10 @@ const Tickets: React.FC = () => {
   const { cheapest, fastest, showMore } = useActions();
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const responseID = await axios.get(
-          `https://front-test.beta.aviasales.ru/search`
-        );
-        const id = responseID.data.searchId;
-        store.dispatch({ type: TicketActionTypes.FETCH_TICKETS });
-        const response = await axios.get(
-          `https://front-test.beta.aviasales.ru/tickets?searchId=${id}`
-        );
-        store.dispatch({
-          type: TicketActionTypes.FETCH_TICKETS_SUCCESS,
-          payload: response.data,
-        });
-      } catch (e) {
-        store.dispatch({
-          type: TicketActionTypes.FETCH_TICKETS_ERROR,
-          payload:
-            "Произошла ошибка при загрузке билетов попробуйте перезагрузить страницу",
-        });
-      }
-    };
-    getData();
+    getData(store.dispatch);
   }, []);
 
-  const list = sortList(tickets, filter, category, listLength);
+  const list: TicketData[] = sortList(tickets, filter, category, listLength);
   const sortedTickets = list.map((ticket) => {
     return <Ticket key={uuidv4()} data={ticket} />;
   });
@@ -83,6 +61,7 @@ const Tickets: React.FC = () => {
         onClick={() => showMore()}
         type="button"
         className="tickets__show-btn btn"
+        hidden={list.length === 0}
       >
         Показать еще 5 билетов!
       </button>

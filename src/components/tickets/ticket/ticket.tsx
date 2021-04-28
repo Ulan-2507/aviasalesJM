@@ -3,11 +3,11 @@ import "./ticket.scss";
 import { TicketData } from "../../../types/ticket";
 
 import Flights from "./flights/flights";
-type IProps = {
+type PropsType = {
   data: TicketData;
 };
 
-const Ticket: React.FC<IProps> = ({ data }) => {
+const Ticket: React.FC<PropsType> = ({ data }) => {
   const { price, carrier, segments } = data;
   return (
     <li className="ticket">

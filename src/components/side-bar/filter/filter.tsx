@@ -5,7 +5,7 @@ import { useActions } from "../../../hooks/useActions";
 import FilterItem from "../filter-item";
 import "./filter.scss";
 
-const Filter = () => {
+const Filter: React.FC = () => {
   const {
     isOpen,
     all,

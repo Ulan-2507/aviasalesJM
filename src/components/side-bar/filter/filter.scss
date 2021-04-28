@@ -25,14 +25,15 @@ $color-main: #2196F3;
         font-weight: 400;
     }
     &__item {
-        padding: 10px 0;
         &:hover {
             background-color: #F1FCFF;
         }
     }
     .check {
+        display: block;
         position: relative;
-        padding-left: 50px;
+        padding: 10px 10px 10px 50px;
+        cursor: pointer;
         transition: 0.3s;
         &__input{
             position: absolute;

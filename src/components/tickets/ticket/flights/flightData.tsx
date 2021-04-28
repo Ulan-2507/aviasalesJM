@@ -1,9 +1,9 @@
 import React from "react";
-type IProps = {
+type PropsType = {
   label: string;
   value: string;
 };
-export default function FlightData({ label, value }: IProps) {
+const FlightData: React.FC<PropsType> = ({ label, value }) => {
   return (
     <div>
       <div className="ticket__label">{label}</div>
@@ -11,3 +11,5 @@ export default function FlightData({ label, value }: IProps) {
     </div>
   );
 }
+
+export default FlightData;

@@ -5,7 +5,7 @@ import "./app.scss";
 import SideBar from "../side-bar";
 import Tickets from "../tickets";
 
-function App() {
+const App:React.FC = () => {
   return (
     <div className="app">
       <header className="app__header">

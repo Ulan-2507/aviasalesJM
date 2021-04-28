@@ -1,49 +1,56 @@
 import { FilterState } from "../types/filter";
 import { TicketActionTypes, TicketData } from "../types/ticket";
+import { SegmentTicket } from '../types/ticket';
 
-const filterTickets = (filter: FilterState, tickets: TicketData[]) => {
-  const transfer = (ticket: TicketData, count: number) => {
-    const segments = ticket.segments.filter(
-      (segment) => segment.stops.length === count
-    );
+enum TransfersCount {
+  ZERO = 0,
+  ONE = 1,
+  TWO = 2,
+  THREE = 3
+}
+const filterTickets = (filter: FilterState, tickets: TicketData[]): TicketData[] => {
+  const transfer = (ticket: TicketData, count: number): TicketData | boolean => {
+    const segments: SegmentTicket[] = ticket.segments.filter(
+      (segment): boolean => segment.stops.length === count
+    ); 
     if (segments.length !== 0) {
-      return { ...ticket, segments: segments };
+      return ticket
     }
     return false;
   };
   switch (true) {
     case filter.threeTransfer:
-      return tickets.filter((ticket) => transfer(ticket, 3) !== false);
+      return tickets.filter((ticket): boolean => transfer(ticket, TransfersCount.THREE) !== false);
     case filter.twoTransfer:
-      return tickets.filter((ticket) => transfer(ticket, 2) !== false);
+      return tickets.filter((ticket): boolean => transfer(ticket, TransfersCount.TWO) !== false);
     case filter.oneTransfer:
-      return tickets.filter((ticket) => transfer(ticket, 1) !== false);
+      return tickets.filter((ticket): boolean => transfer(ticket, TransfersCount.ONE) !== false);
     case filter.withoutTransfers:
-      return tickets.filter((ticket) => transfer(ticket, 0) !== false);
+      return tickets.filter((ticket): boolean => transfer(ticket, TransfersCount.ZERO) !== false);
     default:
       return tickets;
   }
 };
 
-const sortByPrice = (list: TicketData[]) => {
-  return list.sort((a, b) => a.price - b.price);
+const sortByPrice = (list: TicketData[]): TicketData[] => {
+  return list.sort((a: TicketData, b: TicketData): number => a.price - b.price);
 };
 
-const sortByDuration = (list: TicketData[]) => {
-  return list.sort((a, b) => {
+const sortByDuration = (list: TicketData[]): TicketData[] => {
+  return list.sort((a: TicketData, b: TicketData): number => {
     const durationA = a.segments.reduce(
-      (acc, { duration }) => acc + duration,
+      (acc: number, { duration }: SegmentTicket) => acc + duration,
       0
     );
     const durationB = b.segments.reduce(
-      (acc, { duration }) => acc + duration,
+      (acc: number, { duration }: SegmentTicket) => acc + duration,
       0
     );
     return durationA - durationB;
   });
 };
 
-const sortCategory = (list: TicketData[], category: string) => {
+const sortCategory = (list: TicketData[], category: string): TicketData[] => {
   switch (category) {
     case TicketActionTypes.CHEAPEST:
       return sortByPrice(list);
@@ -61,7 +68,7 @@ const sortList = (
   filter: FilterState,
   category: string,
   listLength: number
-) => {
+): TicketData[] => {
   if (
     [
       filter.all,
@@ -69,7 +76,7 @@ const sortList = (
       filter.threeTransfer,
       filter.twoTransfer,
       filter.withoutTransfers,
-    ].filter((i: boolean) => i === true).length > 0
+    ].filter((i: boolean): boolean => i === true).length > 0
   ) {
     const filterList = filterTickets(filter, tickets);
     return sortCategory(filterList, category).slice(0, listLength);

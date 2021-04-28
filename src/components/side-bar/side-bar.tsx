@@ -4,7 +4,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelelctor";
 import Filter from "./filter";
 
-function SideBar() {
+const SideBar: React.FC = () => {
   const { OpenAction } = useActions();
   const { isOpen } = useTypedSelector((state) => ({ ...state.filter }));
 

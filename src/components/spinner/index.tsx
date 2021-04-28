@@ -1,10 +1,10 @@
 import React from "react";
 import "./spinner.scss";
 
-type IProps = {
+type PropsType = {
   loading: boolean;
 };
-const Spinner = ({ loading }: IProps) => {
+const Spinner: React.FC<PropsType> = ({ loading }) => {
   if (loading) {
     return (
       <div className="loader">

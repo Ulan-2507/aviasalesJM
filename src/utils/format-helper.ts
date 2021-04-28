@@ -1,6 +1,6 @@
 import addMinutes from "date-fns/addMinutes";
 
-export const time = (date: string, duration: number) => {
+export const time = (date: string, duration: number): string => {
   const departureTime = new Date(date)
     .toLocaleTimeString("ru-RU")
     .substring(0, 5);
@@ -9,12 +9,12 @@ export const time = (date: string, duration: number) => {
     .substring(0, 5);
   return `${departureTime} - ${arrivalTime}`;
 };
-export const durationTime = (duration: number) => {
+export const durationTime = (duration: number): string  => {
   const hours = Math.floor(duration / 60);
   const min = duration - hours * 60;
   return `${hours}ч ${min}м`;
 };
-export const transition = (stops: string[]) => {
+export const transition = (stops: string[]): string  => {
   const transitionCount = stops.length;
   let result = `${transitionCount} пересад`;
   if (transitionCount === 0 || transitionCount > 4) {

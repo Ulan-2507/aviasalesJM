@@ -1,13 +1,13 @@
 import React from "react";
 import { FilterActions } from "../../../types/filter";
 
-type IProps = {
+type PropsType = {
   value: string;
   show: boolean;
   handler: () => FilterActions;
 };
 
-function FilterItem({ value, show, handler }: IProps) {
+const FilterItem: React.FC<PropsType> = ({ value, show, handler }) => {
   return (
     <li className={"filter__item"} tabIndex={1}>
       <label className="check">

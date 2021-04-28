@@ -18,7 +18,6 @@ export const filterReducer = (
   action: FilterActions
 ): FilterState => {
   const stateLength: number = [
-    state.all,
     state.oneTransfer,
     state.threeTransfer,
     state.twoTransfer,

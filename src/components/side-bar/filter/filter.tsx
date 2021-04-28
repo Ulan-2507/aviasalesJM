@@ -22,6 +22,7 @@ const Filter: React.FC = () => {
     ThreeTransferAction,
   } = useActions();
 
+  
   return (
     <div className={cn("filter", { "filter-open": isOpen })}>
       <h3 className="filter__title">Количество пересадок</h3>

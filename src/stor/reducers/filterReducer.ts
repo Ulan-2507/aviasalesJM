@@ -44,25 +44,25 @@ export const filterReducer = (
       return {
         ...state,
         all:
-          stateLength === 3 && state.withoutTransfers,
+          stateLength === 3 && !state.withoutTransfers,
         withoutTransfers: !state.withoutTransfers,
       };
     case FilterActionTypes.ONE_TRANSFER:
       return {
         ...state,
-        all: stateLength === 3 && state.oneTransfer,
+        all: stateLength === 3 && !state.oneTransfer,
         oneTransfer: !state.oneTransfer,
       };
     case FilterActionTypes.TWO_TRANSFER:
       return {
         ...state,
-        all: stateLength === 3 && state.twoTransfer,
+        all: stateLength === 3 && !state.twoTransfer,
         twoTransfer: !state.twoTransfer,
       };
     case FilterActionTypes.THREE_TRANSFER:
       return {
         ...state,
-        all: stateLength === 3 && state.threeTransfer,
+        all: stateLength === 3 && !state.threeTransfer,
         threeTransfer: !state.threeTransfer,
       };
     default:
